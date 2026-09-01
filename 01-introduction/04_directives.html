@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directives</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>Image Source: {{ image.src }}</p>
+
+    <!-- v-bind:src=" " or short form of v-bind :alt="" -->
+    <img v-bind:src="image.src" :alt="image.alt" style="height: 300px; width: 300px;">
+
+  </div>
+
+  <script>
+    const { createApp, reactive } = Vue;
+    createApp({
+      setup() {
+        let image = reactive({
+          src: 'https://shorturl.at/DlAYd',
+          alt: 'image from unsplash'
+        })
+        return {
+          image
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

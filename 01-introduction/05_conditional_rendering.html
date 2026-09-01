@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conditional Rendering</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div class="" id="app">
+
+
+    <!-- `v-if`, `v-if-else`, `v-else` removes items based on condition -->
+
+    <p v-if="user.isAdmin === 'admin'">
+      Welcome Admin, {{ user.name }}
+    </p>
+    <p v-if="checkAdmin">
+      ❌security issues found!❌
+    </p>
+    <p v-else-if="user.isAdmin === 'user'">
+      Welcome user, {{ user.name }}
+    </p>
+    <p v-else>
+      Hello, Guest
+    </p>
+
+    <hr>
+
+    <!-- `v-show` uses `style="display: none;"` -->
+
+    <p v-show="true">
+      Show this
+    </p>
+    <p v-show="false">
+      Don't show this
+    </p>
+
+
+  </div>
+
+  <script>
+    const { createApp, reactive } = Vue
+    createApp({
+      setup() {
+
+        const user = reactive({
+          name: 'Hasan',
+          age: 18,
+          isAdmin: 'admin'
+        })
+
+        function checkAdmin() {
+          return user.isAdmin === "admin" ? true : false
+        }
+
+        return {
+          user, checkAdmin
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

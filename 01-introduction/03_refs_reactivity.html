@@ -1,0 +1,56 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REFS-Reactivity</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>Value: {{count}}</p>
+    {{ changeValue() }}
+    <p>{{ profileInfo.name }}</p>
+    <p>{{ profileInfo.age }}</p>
+    <p>{{ profileInfo.occupation }}</p>
+    {{ updateInfo() }}
+  </div>
+
+  <script>
+    const { createApp, ref, reactive } = Vue
+    createApp({
+      setup() {
+        //REF - for a single value
+        let count = ref(0);
+
+        function changeValue() {
+          setTimeout(() => {
+            count.value = 1
+          }, 2000)
+        }
+
+        //Reactive - for an object/array containing multiple related values
+        let profileInfo = reactive({
+          name: 'hasan',
+          age: 25,
+          occupation: 'student'
+        })
+
+        function updateInfo() {
+          setTimeout(() => {
+            profileInfo.value.age = 100
+          }, 2000)
+        }
+
+        return {
+          count, changeValue, profileInfo, updateInfo
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

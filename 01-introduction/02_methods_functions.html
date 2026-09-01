@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methods & Functions</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{message()}}
+    <br>
+    {{ welcome() }}
+  </div>
+
+  <script>
+    const { createApp } = Vue
+    createApp({
+      setup() { //Composition API
+        const message = () => 'Message from function'
+
+        return {
+          message,
+        }
+      },
+      methods: { //Options API
+        welcome(){
+          return 'Welcome from methods'
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
