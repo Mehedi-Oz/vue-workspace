@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disable Rerendering</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p v-once>{{ name }}</p>
+    <p>{{ update() }}</p>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue
+    createApp({
+      setup() {
+
+        const name = ref('Hasan')
+
+        function update() {
+          setTimeout(() => {
+            name.value = 'Maha';
+          }, 2000)
+        }
+
+        return { name, update }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

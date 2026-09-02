@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Looping</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div class="" id="app">
+    <ul>
+      <li v-for="(name, index) in names">
+        Id: {{ ++index }} | Name: {{ name }}
+      </li>
+    </ul>
+
+    <ul>
+      <li v-for="(acc, index) in accessories">
+        Id: {{ ++index }} | Brand: {{ acc.brand }}| CPU: {{ acc.cpu }}
+      </li>
+    </ul>
+
+    <ul>
+      <li v-for="(value, key, index) in user">
+        Id: {{ ++index }} | {{ key }}: {{ value }}
+      </li>
+    </ul>
+
+  </div>
+
+  <script>
+    const { createApp, reactive } = Vue
+    createApp({
+      setup() {
+
+        const names = reactive([
+          'muhammad',
+          'mehedi',
+          'hasan'
+        ])
+
+        const accessories = reactive([
+          { brand: 'AMD', cpu: 'Ryzen 7 9800X3D' },
+          { brand: 'AMD', cpu: 'Ryzen 9 9950X3D2' },
+          { brand: 'INTEL', cpu: 'Core Ultra 5 250K Plus' }
+        ])
+
+        const user = reactive({
+          name: 'Hasan',
+          age: 18,
+          isAdmin: true
+        })
+
+        return {
+          names, accessories, user
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
