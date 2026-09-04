@@ -20,13 +20,19 @@
   <div id="app">
     <p>Name: {{ name }}</p>
     <p>Click to change name</p>
+
+    <!-- v-on:click / @click-->
     <div v-on:click="updateName">
       <button>Click</button>
     </div><br>
-    <div v-on:dblclick="updateName">
+
+    <!-- v-on:dblclick / @dblclick-->
+    <div @dblclick="updateName">
       <button>Double Click</button>
     </div>
     <hr>
+
+    <!-- v-on:mousemove / @mousemove-->
     <div class="box" v-on:mousemove="getCoord">
       hover here
       <p>x: {{ coord.x }}</p>
@@ -47,7 +53,7 @@
 
         const coord = ref({ x: 0, y: 0 })
 
-        function getCoord(event){
+        function getCoord(event) {
           coord.value.x = event.clientX;
           coord.value.y = event.clientY;
         }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forms and V-Model</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    .box {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body style="background-color:rgb(66, 66, 97);">
+
+  <div id="app">
+    <!-- v-on:submit.prevent="formHandler" / @submit.prevent="formHandler"  -->
+    <form action="" v-on:submit.prevent="formHandler">
+      <label for="">Name: </label>
+
+      <input type="text" v-model.trim="formData.name">
+      <br><br>
+
+      <label for="">Email: </label>
+      <input type="email" v-model="formData.email">
+      <br><br>
+
+      <label for="">Age: </label>
+      <input type="number" v-model="formData.age">
+      <br><br>
+
+      <input type="checkbox" v-model="formData.checked">
+      <label for="">{{ formData.checked }}</label>
+      <br><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    let { createApp, reactive } = Vue
+    createApp({
+      setup() {
+
+        const formData = reactive({
+          name: "",
+          email: "",
+          age: "",
+          checked: false,
+        })
+
+        function formHandler() {
+          console.log(formData)
+        }
+
+        return { formData, formHandler }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

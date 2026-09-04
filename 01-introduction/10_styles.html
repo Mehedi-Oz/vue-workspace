@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body {
+      background-color: rgb(66, 66, 97);
+    }
+
+    .element {
+      color: white;
+      background: black;
+      padding: 10px
+    }
+
+    .red {
+      background: red;
+    }
+
+    .blue {
+      background: blue;
+    }
+
+    .large {
+      font-size: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- <div class="element" :class="{red:redColor}" @click="redColor =! redColor">
+      This is a element
+    </div> -->
+
+    <div class="element" :class="colors">
+      This is a element
+    </div><br>
+    <button @click="colors.blue = !colors.blue">Toggle Color</button>
+
+  </div>
+
+  <script>
+    let { createApp, ref, reactive } = Vue
+    createApp({
+      setup() {
+        // const redColor = ref(false)
+        // return { redColor }
+
+        const colors = reactive({
+          red: true,
+          blue: true,
+        })
+
+
+        return { colors }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
