@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Style</title>
+
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
   <style>
     body {
       background-color: rgb(66, 66, 97);
@@ -14,7 +16,7 @@
     .element {
       color: white;
       background: black;
-      padding: 10px
+      padding: 10px;
     }
 
     .red {
@@ -34,19 +36,34 @@
 <body>
 
   <div id="app">
+
     <!-- <div class="element" :class="{red:redColor}" @click="redColor =! redColor">
       This is a element
     </div> -->
 
     <div class="element" :class="colors">
-      This is a element
+      This is interacting with colors
     </div><br>
+
     <button @click="colors.blue = !colors.blue">Toggle Color</button>
+
+    <hr>
+
+    <div class="element" :class="[colors_2.redClass]">
+      This is interacting with colors_2
+    </div><br>
+
+    <button @click="colors_2.redClass = colors_2.redClass === 'red' ? '' : 'red'">
+      Toggle Color
+    </button>
+
+    <hr>
 
   </div>
 
   <script>
     let { createApp, ref, reactive } = Vue
+
     createApp({
       setup() {
         // const redColor = ref(false)
@@ -57,11 +74,16 @@
           blue: true,
         })
 
+        const colors_2 = reactive({
+          redClass: 'red',
+          blueClass: 'blue',
+        })
 
-        return { colors }
+        return { colors, colors_2 }
       }
     }).mount('#app')
   </script>
+
 </body>
 
 </html>
