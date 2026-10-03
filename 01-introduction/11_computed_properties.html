@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>computed-properties</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <input v-model="data.user" />
+    <button @click="toggleActive">Other Action</button>
+    <hr>
+    <div>
+      Message: {{ message }}
+    </div>
+    <div>
+      Active:{{ isActive }}
+    </div>
+  </div>
+
+
+</body>
+<script>
+  const { createApp, ref, computed } = Vue;
+  createApp({
+    setup() {
+      const data = ref({
+        user: '',
+        active: ''
+      })
+      const message = computed(() => {
+        console.log('Message !! Triggered')
+        return data.value.user === 'Hasan' ? 'Welcome' : 'Not allowed'
+      })
+
+      const isActive = computed(() => {
+        console.log('Active !! Triggered')
+        return data.value.active ? 'Active' : 'Not Active'
+      })
+
+      function toggleActive() {
+        data.value.active = data.value.active ? false : true
+      }
+
+      return {
+        data, message, isActive, toggleActive
+      }
+    }
+  }).mount('#app')
+</script>
+
+</html>
