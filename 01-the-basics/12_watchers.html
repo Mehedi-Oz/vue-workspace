@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>watchers</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p>Count: {{ count.number }}</p>
+    <button @click="count.number++">Click!!</button>
+  </div>
+
+</body>
+
+<script>
+  const { createApp, ref, watch, reactive } = Vue
+  createApp({
+    setup() {
+      /* single value */
+      // let count = ref(0);
+
+      // watch(count, (newCount, oldCount) => {
+      //   console.log(`New value is ${newCount}, Old value is ${oldCount}`);
+      // })
+
+      /* object-ref */
+      // let count = ref({
+      //   number: 0,
+      //   other: 'other prop'
+      // });
+
+      // watch(() => count.value.number, (newCount, oldCount) => {
+      //   console.log(`New value is ${newCount}, Old value is ${oldCount}`);
+      // })
+
+      /* object-reactive */
+      let count = reactive({
+        number: 0,
+        other: 'other prop'
+      });
+
+      // watch(() => count.number, (newCount, oldCount) => {
+      //   console.log(`New value is ${newCount}, Old value is ${oldCount}`);
+      // })
+
+      watch(() => [count.number, count.other], (newCount, oldCount) => {
+        console.log(`New counted value is ${newCount}`);
+        console.log(`Old counted value is ${oldCount}`);
+      })
+
+      return {
+        count
+      }
+    }
+  }).mount('#app')
+</script>
+
+</html>
